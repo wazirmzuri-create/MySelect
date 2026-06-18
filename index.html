@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,515 +7,546 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,300;0,400;0,600;0,700;0,800;1,400&family=Vazirmatn:wght=300;400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Vazirmatn:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* Reset & Base Premium Styles */
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-      transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+    /* ===== CSS VARIABLES - THEME SYSTEM ===== */
+    :root {
+      --bg-primary: #060B14;
+      --bg-secondary: #040811;
+      --bg-card: #0B1528;
+      --bg-input: #060B14;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #7c8ba1;
+      --border-color: rgba(255, 255, 255, 0.05);
+      --border-subtle: rgba(255, 255, 255, 0.03);
+      --nav-bg: #ffffff;
+      --nav-text: #1e293b;
+      --nav-text-hover: #0B1528;
+      --nav-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      --gold: #D4AF37;
+      --gold-glow: rgba(212, 175, 55, 0.3);
+      --gold-bg: rgba(212, 175, 55, 0.15);
+      --logo-filter: none;
+      --section-border: 1px solid rgba(255,255,255,0.03);
+      --hero-overlay: linear-gradient(90deg, rgba(6,11,20,0.9) 40%, rgba(6,11,20,0.5) 100%);
+      --hero-overlay-rtl: linear-gradient(270deg, rgba(6,11,20,0.9) 40%, rgba(6,11,20,0.5) 100%);
+      --info-box-bg: #0B1528;
+      --lang-box-bg: #f1f5f9;
+      --lang-box-border: #e2e8f0;
+      --lang-box-hover: #e2e8f0;
+      --btn-contact-bg: linear-gradient(135deg, #0B1528, #1e293b);
     }
+
+    [data-theme="light"] {
+      --bg-primary: #f0f4f8;
+      --bg-secondary: #e8edf5;
+      --bg-card: #ffffff;
+      --bg-input: #f8fafc;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --border-color: rgba(0,0,0,0.08);
+      --border-subtle: rgba(0,0,0,0.05);
+      --nav-bg: #0B1528;
+      --nav-text: #ffffff;
+      --nav-text-hover: #D4AF37;
+      --nav-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --gold: #b8942a;
+      --gold-glow: rgba(184, 148, 42, 0.25);
+      --gold-bg: rgba(184, 148, 42, 0.12);
+      --logo-filter: brightness(0) invert(1);
+      --section-border: 1px solid rgba(0,0,0,0.06);
+      --hero-overlay: linear-gradient(90deg, rgba(6,11,20,0.85) 40%, rgba(6,11,20,0.45) 100%);
+      --hero-overlay-rtl: linear-gradient(270deg, rgba(6,11,20,0.85) 40%, rgba(6,11,20,0.45) 100%);
+      --info-box-bg: #f1f5f9;
+      --lang-box-bg: rgba(255,255,255,0.15);
+      --lang-box-border: rgba(255,255,255,0.2);
+      --lang-box-hover: rgba(255,255,255,0.25);
+      --btn-contact-bg: linear-gradient(135deg, #D4AF37, #b8942a);
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    
-    body { 
-      background-color: #060B14; 
-      color: #f8fafc; 
-      font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif; 
-      line-height: 1.6; 
-      overflow-x: hidden; 
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', 'Vazirmatn', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
-    
-    html[dir="rtl"] body {
-      font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif;
-    }
-    
+    html[dir="rtl"] body { font-family: 'Vazirmatn', 'Plus Jakarta Sans', sans-serif; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    
-    /* 🔳 FLOATING WHITE HEADER */
-    header { 
-      position: absolute; 
-      top: 15px; 
-      left: 0;
-      right: 0;
-      z-index: 100; 
-      background-color: #ffffff; 
-      margin: 0 20px; 
-      border-radius: 16px; 
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
-      border: 1px solid rgba(255, 255, 255, 0.8);
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 15px;
+      left: 0; right: 0;
+      z-index: 1000;
+      background-color: var(--nav-bg);
+      margin: 0 20px;
+      border-radius: 16px;
+      box-shadow: var(--nav-shadow);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
     }
-    
-    .nav-flex { 
-      display: flex; 
-      align-items: center; 
-      justify-content: space-between; 
-      height: 100px; 
-      padding: 0 30px; 
-      max-width: 100%;
-    }
-    
-    .logo a { display: flex; align-items: center; text-decoration: none; }
-    .logo img { 
-      height: 80px; 
-      max-height: 85px; 
-      width: auto; 
-      display: block; 
-      object-fit: contain; 
-    }
-    
-    .nav-right { display: flex; align-items: center; gap: 25px; }
-    nav { display: flex; align-items: center; gap: 25px; }
-    nav a { 
-      text-decoration: none; 
-      color: #1e293b; 
-      font-weight: 700; 
-      font-size: 15px; 
-      position: relative; 
-      padding: 5px 0; 
-      letter-spacing: -0.3px;
-    } 
-    nav a:hover { color: #0B1528; }
-    nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #D4AF37; transition: width 0.3s; }
-    nav a:hover::after { width: 100%; }
-    
-    .btn-contact { background: linear-gradient(135deg, #0B1528, #1e293b); color: #ffffff !important; padding: 12px 26px; border-radius: 50px; font-weight: 700; box-shadow: 0 4px 15px rgba(11, 21, 40, 0.3); border: 1px solid #D4AF37; }
-    .btn-contact:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); }
-    .btn-contact::after { display: none !important; }
-    
-    /* 🌐 MODERN LANGUAGE BOX STYLING */
-    .lang-box {
+
+    .nav-flex {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background-color: #f1f5f9;
-      padding: 10px 16px;
-      border-radius: 50px;
-      border: 1px solid #e2e8f0;
+      justify-content: space-between;
+      height: 90px;
+      padding: 0 30px;
     }
-    .lang-box:hover {
-      background-color: #e2e8f0;
-      border-color: #cbd5e1;
+
+    /* LOGO */
+    .logo a { display: flex; align-items: center; text-decoration: none; }
+    .logo img {
+      height: 75px;
+      max-height: 80px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      filter: var(--logo-filter);
+      transition: filter 0.4s ease;
     }
-    .lang-box svg { width: 18px; height: 18px; fill: #475569; }
-    .lang-box select { 
-      background: transparent; 
-      border: none; 
-      font-family: inherit;
-      font-weight: 700; 
-      color: #334155; 
-      cursor: pointer; 
-      outline: none; 
+
+    /* DESKTOP NAV */
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    nav { display: flex; align-items: center; gap: 22px; }
+    nav a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 700;
       font-size: 14px;
-      padding-right: 5px;
-      appearance: none;
+      position: relative;
+      padding: 5px 0;
+      letter-spacing: -0.3px;
+      transition: color 0.3s;
     }
-    
-    /* 🚀 HERO SECTION */
-    .hero { 
+    nav a:hover { color: var(--gold); }
+    nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: var(--gold); transition: width 0.3s; }
+    html[dir="rtl"] nav a::after { left: auto; right: 0; }
+    nav a:hover::after { width: 100%; }
+
+    .btn-contact {
+      background: var(--btn-contact-bg) !important;
+      color: #ffffff !important;
+      padding: 11px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(11,21,40,0.3);
+      border: 1px solid var(--gold);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-contact:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--gold-glow); }
+    .btn-contact::after { display: none !important; }
+
+    /* CONTROLS GROUP (lang + theme + hamburger) */
+    .controls-group { display: flex; align-items: center; gap: 10px; }
+
+    /* LANG BOX */
+    .lang-box {
+      display: flex; align-items: center; gap: 6px;
+      background-color: var(--lang-box-bg);
+      padding: 8px 14px;
+      border-radius: 50px;
+      border: 1px solid var(--lang-box-border);
+      transition: background 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    .lang-box:hover { background-color: var(--lang-box-hover); }
+    .lang-box svg { width: 16px; height: 16px; fill: var(--nav-text); flex-shrink: 0; }
+    .lang-box select {
+      background: transparent; border: none;
+      font-family: inherit; font-weight: 700;
+      color: var(--nav-text); cursor: pointer;
+      outline: none; font-size: 13px;
+      appearance: none; padding-right: 3px;
+      transition: color 0.4s;
+    }
+
+    /* THEME TOGGLE */
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px;
+      background-color: var(--lang-box-bg);
+      border: 1px solid var(--lang-box-border);
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--nav-text);
+      font-size: 16px;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s, color 0.4s;
+    }
+    .theme-toggle:hover { transform: rotate(20deg) scale(1.1); background-color: var(--lang-box-hover); }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px; height: 44px;
+      background: var(--lang-box-bg);
+      border: 1px solid var(--lang-box-border);
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 1001;
+      transition: background 0.3s;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background-color: var(--nav-text);
+      border-radius: 2px;
+      transition: transform 0.35s ease, opacity 0.35s ease, background-color 0.4s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* MOBILE MENU OVERLAY */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--nav-bg);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--nav-text);
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mobile-controls {
+      display: flex; align-items: center; gap: 16px;
+      margin-top: 10px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+    }
+    .mobile-menu .lang-box-mobile {
+      display: flex; align-items: center; gap: 8px;
+      background-color: var(--lang-box-bg);
+      padding: 10px 18px;
+      border-radius: 50px;
+      border: 1px solid var(--lang-box-border);
+    }
+    .mobile-menu .lang-box-mobile svg { width: 18px; height: 18px; fill: var(--nav-text); }
+    .mobile-menu .lang-box-mobile select {
+      background: transparent; border: none;
+      font-family: inherit; font-weight: 700;
+      color: var(--nav-text); font-size: 15px;
+      cursor: pointer; outline: none; appearance: none;
+    }
+    .mobile-menu .theme-toggle-mobile {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--lang-box-bg);
+      border: 1px solid var(--lang-box-border);
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--nav-text);
+      font-size: 20px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
       position: relative;
       width: 100%;
-      min-height: 100vh; 
-      display: flex; 
-      align-items: center; 
-      overflow: hidden; 
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
     }
-
-    .hero-bg-slider {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-
+    .hero-bg-slider { position: absolute; inset: 0; z-index: 1; }
     .hero-bg-slider img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center;
       opacity: 0;
-      transition: opacity 1.5s ease-in-out; 
+      transition: opacity 1.5s ease-in-out;
     }
-
-    .hero-bg-slider img.active {
-      opacity: 1;
-    }
-
-    .hero::before { 
-      content: ''; 
-      position: absolute; 
-      top: 0; 
-      left: 0; 
-      width: 100%; 
-      height: 100%; 
-      background: linear-gradient(90deg, rgba(6, 11, 20, 0.9) 40%, rgba(6, 11, 20, 0.5) 100%); 
-      z-index: 2; 
+    .hero-bg-slider img.active { opacity: 1; }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--hero-overlay);
+      z-index: 2;
       pointer-events: none;
     }
-    
-    html[dir="rtl"] .hero::before {
-      background: linear-gradient(270deg, rgba(6, 11, 20, 0.9) 40%, rgba(6, 11, 20, 0.5) 100%); 
-    }
-
-    .hero .container {
-      position: relative;
-      z-index: 3; 
-      width: 100%;
-      padding-top: 100px; 
-    }
-    
+    html[dir="rtl"] .hero::before { background: var(--hero-overlay-rtl); }
+    .hero .container { position: relative; z-index: 3; width: 100%; padding-top: 130px; padding-bottom: 80px; }
     .hero-text-box { max-width: 650px; }
-    .hero-tag { display: inline-block; background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.4); color: #D4AF37; padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 28px; letter-spacing: 1px; }
-    .hero h1 { font-size: 54px; font-weight: 800; line-height: 1.2; margin-bottom: 24px; letter-spacing: -1.5px; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid rgba(212,175,55,0.4);
+      color: var(--gold);
+      padding: 8px 18px; border-radius: 50px;
+      font-size: 13px; font-weight: 700;
+      text-transform: uppercase; margin-bottom: 28px; letter-spacing: 1px;
+    }
+    .hero h1 {
+      font-size: 54px; font-weight: 800;
+      line-height: 1.2; margin-bottom: 24px;
+      letter-spacing: -1.5px; color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
     .hero h1 span { background: linear-gradient(to right, #ffffff, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { color: #cbd5e1; font-size: 22px; font-style: italic; border-left: 4px solid #D4AF37; padding-left: 20px; margin-bottom: 40px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-    
-    html[dir="rtl"] .hero p { border-left: none; border-right: 4px solid #D4AF37; padding-left: 0; padding-right: 20px; }
+    .hero p {
+      color: #cbd5e1; font-size: 20px;
+      font-style: italic;
+      border-left: 4px solid var(--gold);
+      padding-left: 20px; margin-bottom: 40px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+    html[dir="rtl"] .hero p { border-left: none; border-right: 4px solid var(--gold); padding-left: 0; padding-right: 20px; }
 
-    .btn-main { background: linear-gradient(135deg, #0B1528, #1e293b); color: #ffffff; border: 1px solid #D4AF37; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-    .btn-main:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3); }
+    .btn-main {
+      background: linear-gradient(135deg, #0B1528, #1e293b);
+      color: #ffffff; border: 1px solid var(--gold);
+      padding: 16px 36px; border-radius: 8px;
+      text-decoration: none; font-weight: 700;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-main:hover { transform: translateY(-3px); box-shadow: 0 6px 20px var(--gold-glow); }
 
-    /* Elegant Section Titles */
-    .section-title { text-align: center; margin-bottom: 70px; position: relative; }
-    .section-title h2 { font-size: 36px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .section-title .bar { width: 60px; height: 4px; background: linear-gradient(to right, #0B1528, #D4AF37); margin: 15px auto 0 auto; border-radius: 10px; }
+    /* ===== SECTION TITLES ===== */
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 {
+      font-size: 34px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .section-title .bar { width: 60px; height: 4px; background: linear-gradient(to right, #0B1528, #D4AF37); margin: 15px auto 0; border-radius: 10px; }
 
-    /* About Us Section */
-    .about { padding: 120px 0; background-color: #040811; border-top: 1px solid rgba(255, 255, 255, 0.03); }
+    /* ===== ABOUT ===== */
+    .about { padding: 120px 0; background-color: var(--bg-secondary); border-top: var(--section-border); transition: background-color 0.4s; }
     .about-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
     @media (min-width: 1024px) { .about-grid { grid-template-columns: 1fr 1fr; } }
-    .about-content h2 { font-size: 36px; font-weight: 800; margin-bottom: 24px; background: linear-gradient(to right, #ffffff, #D4AF37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .about-content p { color: #94a3b8; font-size: 17px; line-height: 1.8; margin-bottom: 20px; }
-    .about-content p strong { color: #D4AF37; font-weight: 700; }
-    
-    /* 🔳 MODERN FIXED HEXAGON WITH THICK GOLDEN POINT LIGHT */
-    .about-hexagon-container {
-      position: relative;
-      width: 380px;
-      height: 420px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .about-content h2 {
+      font-size: 34px; font-weight: 800; margin-bottom: 24px;
+      background: linear-gradient(to right, var(--text-primary), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    
-    .hexagon-glow-border {
-      position: absolute;
-      width: 350px;
-      height: 395px;
-      z-index: 1;
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      background: rgba(212, 175, 55, 0.4); 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    
-    .hexagon-glow-border::before {
-      content: '';
-      position: absolute;
-      width: 380%; 
-      height: 380%;
-      background: conic-gradient(from 0deg, transparent 30%, #FFD700 46%, #FFA500 50%, #D4AF37 54%, transparent 70%);
-      opacity: 0;
-      mix-blend-mode: screen; 
-    }
-    
-    .hexagon-glow-border.pulse-rotate::before {
-      opacity: 1;
-      animation: goldenPointRotate 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
-    
-    @keyframes goldenPointRotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .hexagon-content {
-      position: absolute;
-      width: 344px; 
-      height: 384px;
-      background: #040811; 
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      z-index: 2;
-      overflow: hidden;
-    }
-    
-    .about-slideshow {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .about-slide-img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 1.2s ease-in-out;
-    }
-    
-    .about-slide-img.active {
-      opacity: 1;
-    }
+    .about-content p { color: var(--text-secondary); font-size: 17px; line-height: 1.8; margin-bottom: 20px; }
+    .about-content p strong { color: var(--gold); font-weight: 700; }
 
-    /* Premium Services Grid */
-    .services { padding: 120px 0; background-color: #060B14; position: relative; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-    .service-card { background-color: #0B1528; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .service-card:hover { transform: translateY(-10px); border-color: #D4AF37; box-shadow: 0 15px 35px rgba(212, 175, 55, 0.1); }
-    .service-img { height: 200px; width: 100%; overflow: hidden; background-color: #060b19; }
-    .service-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: transform 0.4s ease; }
+    /* HEXAGON */
+    .about-hexagon-container { position: relative; width: 380px; height: 420px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+    .hexagon-glow-border {
+      position: absolute; width: 350px; height: 395px; z-index: 1;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background: rgba(212,175,55,0.4);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hexagon-glow-border::before {
+      content: ''; position: absolute; width: 380%; height: 380%;
+      background: conic-gradient(from 0deg, transparent 30%, #FFD700 46%, #FFA500 50%, #D4AF37 54%, transparent 70%);
+      opacity: 0; mix-blend-mode: screen;
+    }
+    .hexagon-glow-border.pulse-rotate::before { opacity: 1; animation: goldenPointRotate 1.5s cubic-bezier(0.25,1,0.5,1) forwards; }
+    @keyframes goldenPointRotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .hexagon-content {
+      position: absolute; width: 344px; height: 384px;
+      background: var(--bg-secondary);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      z-index: 2; overflow: hidden; transition: background-color 0.4s;
+    }
+    .about-slideshow { position: relative; width: 100%; height: 100%; }
+    .about-slide-img { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease-in-out; }
+    .about-slide-img.active { opacity: 1; }
+
+    /* ===== SERVICES ===== */
+    .services { padding: 120px 0; background-color: var(--bg-primary); transition: background-color 0.4s; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px; overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, background-color 0.4s;
+    }
+    .service-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: 0 15px 35px var(--gold-glow); }
+    .service-img { height: 200px; width: 100%; overflow: hidden; background-color: var(--bg-secondary); }
+    .service-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: transform 0.4s; }
     .service-card:hover .service-img img { transform: scale(1.06); }
     .service-info { padding: 25px; flex-grow: 1; }
-    .service-info h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #ffffff; letter-spacing: 0.5px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 8px; }
-    .service-info p { color: #94a3b8; font-size: 14px; line-height: 1.6; }
+    .service-info h3 { font-size: 17px; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); letter-spacing: 0.5px; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 8px; }
+    .service-info p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
 
-    /* 🎯 WHY US SECTION STYLING */
-    .why-us { 
-      padding: 120px 0; 
-      background-color: #040811; 
-      border-top: 1px solid rgba(255, 255, 255, 0.03); 
+    /* ===== WHY US ===== */
+    .why-us { padding: 120px 0; background-color: var(--bg-secondary); border-top: var(--section-border); transition: background-color 0.4s; }
+    .why-us-grid { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 50px; }
+    @media (min-width: 768px) { .why-us-grid { grid-template-columns: 1fr 1fr; } }
+    .why-item {
+      display: flex; align-items: flex-start; gap: 20px;
+      background-color: var(--bg-card);
+      padding: 28px; border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, background-color 0.4s;
     }
-    .why-us-grid { 
-      display: grid; 
-      grid-template-columns: 1fr; 
-      gap: 40px; 
-      margin-top: 50px; 
+    .why-item:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 15px 30px var(--gold-glow); }
+    .why-icon {
+      font-size: 26px; color: var(--gold);
+      background: var(--gold-bg);
+      padding: 14px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      min-width: 64px; height: 64px;
+      transition: transform 0.3s, background 0.3s;
     }
-    @media (min-width: 768px) { 
-      .why-us-grid { grid-template-columns: 1fr 1fr; } 
-    }
+    .why-item:hover .why-icon { transform: scale(1.05); background: rgba(212,175,55,0.25); }
+    .why-content { border-left: 3px solid var(--gold); padding-left: 15px; }
+    html[dir="rtl"] .why-content { border-left: none; border-right: 3px solid var(--gold); padding-left: 0; padding-right: 15px; }
+    .why-content h3 { font-size: 18px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; text-transform: uppercase; }
+    .why-content p { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
 
-    .why-item { 
-      display: flex; 
-      align-items: flex-start; 
-      gap: 20px; 
-      background-color: #0B1528; 
-      padding: 30px; 
-      border-radius: 16px; 
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .why-item:hover {
-      border-color: #D4AF37;
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15);
-    }
-
-    .why-icon { 
-      font-size: 30px; 
-      color: #D4AF37; 
-      background: rgba(212, 175, 55, 0.1);
-      padding: 15px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 70px;
-      height: 70px;
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .why-item:hover .why-icon {
-      transform: scale(1.05);
-      background: rgba(212, 175, 55, 0.2);
-    }
-
-    .why-content {
-      border-left: 3px solid #D4AF37;
-      padding-left: 15px;
-      transition: border-color 0.3s ease;
-    }
-
-    html[dir="rtl"] .why-content {
-      border-left: none;
-      border-right: 3px solid #D4AF37;
-      padding-left: 0;
-      padding-right: 15px;
-    }
-
-    .why-content h3 { 
-      font-size: 20px; 
-      font-weight: 700; 
-      color: #ffffff; 
-      margin-bottom: 8px; 
-      text-transform: uppercase; 
-    }
-    .why-content p { 
-      color: #94a3b8; 
-      font-size: 15px; 
-      line-height: 1.6; 
-    }
-
-    /* Partners & Clients Sections */
-    .partners-section, .clients-section { padding: 80px 0; background-color: #040811; border-top: 1px solid rgba(255, 255, 255, 0.03); }
-    .clients-section { background-color: #060B14; }
-
-    .grid-logos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-      align-items: center;
-      justify-items: center;
-      margin-top: 40px;
-    }
-
+    /* ===== PARTNERS & CLIENTS ===== */
+    .partners-section, .clients-section { padding: 80px 0; background-color: var(--bg-secondary); border-top: var(--section-border); transition: background-color 0.4s; }
+    .clients-section { background-color: var(--bg-primary); }
+    .grid-logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; align-items: center; justify-items: center; margin-top: 40px; }
     .logo-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 5px;
-      border-radius: 12px;
-      width: 100%;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 120px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      background: var(--border-color);
+      border: 1px solid var(--border-subtle);
+      padding: 5px; border-radius: 12px;
+      width: 100%; text-align: center;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 110px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
     }
+    .logo-item img { width: 85%; max-height: 90px; object-fit: contain; transition: transform 0.3s; }
+    .logo-item:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .logo-item:hover img { transform: scale(1.06); }
 
-    .logo-item img {
-      width: 85%;
-      max-height: 95px;
-      object-fit: contain;
-      filter: none;
-      opacity: 1;    
-      transition: transform 0.3s ease;
-    }
-
-    .logo-item:hover {
-      border-color: #D4AF37;
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .logo-item:hover img {
-      transform: scale(1.08);
-    } 
-
-    /* Modern Contact Section */
-    .contact { padding: 120px 0; background-color: #040811; border-top: 1px solid rgba(255, 255, 255, 0.03); }
+    /* ===== CONTACT ===== */
+    .contact { padding: 120px 0; background-color: var(--bg-secondary); border-top: var(--section-border); transition: background-color 0.4s; }
     .contact-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
     @media (min-width: 1024px) { .contact-grid { grid-template-columns: 1fr 1.2fr; } }
-    
-    .contact-details h3 { font-size: 32px; font-weight: 800; margin-bottom: 20px; line-height: 1.3; }
-    .contact-details p { color: #94a3b8; margin-bottom: 40px; font-size: 17px; }
-    .info-list { display: flex; flex-direction: column; gap: 25px; }
-    
-    .info-box { 
-      display: flex; 
-      align-items: center; 
-      gap: 20px; 
-      background-color: #0B1528; 
-      padding: 20px; 
-      border-radius: 16px; 
-      border: 1px solid rgba(255, 255, 255, 0.02); 
-    }
-    .info-box .icon { font-size: 24px; color: #D4AF37; }
-    .info-box div h5 { color: #7c8ba1; font-size: 11px; text-transform: uppercase; margin-bottom: 5px; font-weight: 700; letter-spacing: 1.5px; }
-    .info-box div p { color: #ffffff; font-size: 16px; font-weight: 700; margin: 0; line-height: 1.5; }
-    
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 35px;
-      padding: 5px;
-    }
+    .contact-details h3 { font-size: 30px; font-weight: 800; margin-bottom: 20px; line-height: 1.3; color: var(--text-primary); }
+    .contact-details p { color: var(--text-secondary); margin-bottom: 40px; font-size: 16px; }
+    .info-list { display: flex; flex-direction: column; gap: 20px; }
+    .info-box { display: flex; align-items: center; gap: 20px; background-color: var(--info-box-bg); padding: 18px; border-radius: 16px; border: 1px solid var(--border-color); transition: background-color 0.4s; }
+    .info-box .icon { font-size: 22px; }
+    .info-box div h5 { color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; letter-spacing: 1.5px; }
+    .info-box div p { color: var(--text-primary); font-size: 15px; font-weight: 700; margin: 0; line-height: 1.5; }
+    .social-links { display: flex; gap: 14px; margin-top: 30px; }
     .social-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      background-color: #0B1528;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 50%;
-      color: #ffffff;
-      text-decoration: none;
-      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%; color: var(--text-primary);
+      text-decoration: none; font-size: 17px;
+      transition: border-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s, background-color 0.4s;
     }
-    .social-icon:hover {
-      border-color: #D4AF37;
-      color: #D4AF37;
-      transform: translateY(-4px);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
-      background-color: #12223f;
+    .social-icon:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-4px); box-shadow: 0 6px 20px var(--gold-glow); }
+    .contact-form { background-color: var(--bg-card); padding: 40px; border-radius: 24px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.2); transition: background-color 0.4s; }
+    .form-group { margin-bottom: 18px; }
+    .form-group input, .form-group textarea {
+      width: 100%; background-color: var(--bg-input);
+      border: 1px solid var(--border-color);
+      padding: 15px 18px; border-radius: 8px;
+      color: var(--text-primary); font-size: 15px;
+      outline: none; font-family: inherit;
+      transition: border-color 0.3s, background-color 0.4s, color 0.4s;
     }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+    .btn-submit {
+      width: 100%; background: var(--bg-card);
+      color: var(--text-primary); border: 1px solid var(--gold);
+      padding: 15px; border-radius: 8px;
+      font-weight: 700; font-size: 15px;
+      cursor: pointer; font-family: inherit;
+      transition: background 0.3s, box-shadow 0.3s, color 0.4s;
+    }
+    .btn-submit:hover { background: var(--gold-bg); box-shadow: 0 5px 15px var(--gold-glow); }
 
-    .contact-form { 
-      background-color: #0B1528; 
-      padding: 40px; 
-      border-radius: 24px; 
-      border: 1px solid rgba(255, 255, 255, 0.05); 
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3); 
-    }
-    .form-group { margin-bottom: 20px; }
-    .form-group input, .form-group textarea { 
-      width: 100%; 
-      background-color: #060B14; 
-      border: 1px solid #161f30; 
-      padding: 16px 20px; 
-      border-radius: 8px; 
-      color: #ffffff; 
-      font-size: 15px; 
-      outline: none; 
-      font-family: inherit; 
-    }
-    .form-group input:focus, .form-group textarea:focus { border-color: #D4AF37; }
-    
-    .btn-submit { 
-      width: 100%; 
-      background: #172237; 
-      color: #ffffff; 
-      border: 1px solid #D4AF37; 
-      padding: 16px; 
-      border-radius: 8px; 
-      font-weight: 700; 
-      font-size: 16px; 
-      cursor: pointer; 
-      font-family: inherit; 
-    }
-    .btn-submit:hover { 
-      background: #1d2b44; 
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); 
-    }
-
+    /* ===== MOBILE RESPONSIVE ===== */
     @media (max-width: 768px) {
-      header { top: 10px; margin: 0 10px; position: sticky; }
-      nav { display: none; }
-      .nav-flex { height: 90px; padding: 0 15px; }
-      .logo img { height: 65px; }
-      .hero h1 { font-size: 36px; }
-      .contact-form { padding: 25px; }
-      .about-hexagon-container { width: 300px; height: 340px; }
-      .hexagon-content { width: 264px; height: 304px; }
-      .hexagon-glow-border { width: 270px; height: 310px; }
+      header { top: 10px; margin: 0 10px; }
+      .nav-flex { height: 76px; padding: 0 16px; }
+      .logo img { height: 58px; }
+      nav, .lang-box, .theme-toggle { display: none; }
+      .hamburger { display: flex; }
+
+      .hero .container { padding-top: 110px; padding-bottom: 60px; }
+      .hero h1 { font-size: 32px; letter-spacing: -1px; }
+      .hero p { font-size: 16px; }
+      .hero-bg-slider img {
+        object-position: 60% center;
+      }
+
+      .about { padding: 80px 0; }
+      .about-grid { gap: 40px; }
+      .about-hexagon-container { width: 260px; height: 295px; }
+      .hexagon-content { width: 240px; height: 275px; }
+      .hexagon-glow-border { width: 248px; height: 283px; }
+
+      .services { padding: 80px 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-img { height: 180px; }
+
+      .why-us { padding: 80px 0; }
+      .partners-section, .clients-section { padding: 60px 0; }
+      .grid-logos { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+      .contact { padding: 80px 0; }
+      .contact-form { padding: 24px; }
+      .contact-details h3 { font-size: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 15px; }
+      .btn-main { padding: 14px 28px; font-size: 14px; }
+      .section-title h2 { font-size: 26px; }
+      .about-hexagon-container { width: 230px; height: 260px; }
+      .hexagon-content { width: 210px; height: 240px; }
+      .hexagon-glow-border { width: 218px; height: 248px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
-    <div class="nav-flex" id="nav-container">
+    <div class="nav-flex">
       <div class="logo">
         <a href="#">
-          <img src="assets/logo.png" alt="MySelect Logo" onerror="this.src='assets/logo.png'">
+          <img src="assets/logo.png" alt="MySelect Logo">
         </a>
       </div>
 
-      <div class="nav-right" id="nav-right-side">
+      <!-- DESKTOP NAV -->
+      <div class="nav-right">
         <nav id="nav-menu">
           <a href="#about" data-key="nav-about">About Us</a>
           <a href="#services" data-key="nav-services">Our Services</a>
@@ -524,20 +555,51 @@
           <a href="#contact" data-key="nav-contact" class="btn-contact">Contact Us</a>
         </nav>
 
-        <div class="lang-box">
-          <svg viewBox="0 0 24 24">
-            <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M17.9,17.39C17.64,16.58 16.9,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C18.55,5.78 21,9.11 21,13C21,14.63 20.45,16.13 19.53,17.33L17.9,17.39Z" />
-          </svg>
-          <select id="lang-select">
-            <option value="en">English</option>
-            <option value="ku">کوردی</option>
-            <option value="ar">العربية</option>
-          </select>
+        <div class="controls-group">
+          <div class="lang-box">
+            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M17.9,17.39C17.64,16.58 16.9,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C18.55,5.78 21,9.11 21,13C21,14.63 20.45,16.13 19.53,17.33L17.9,17.39Z"/></svg>
+            <select id="lang-select">
+              <option value="en">English</option>
+              <option value="ku">کوردی</option>
+              <option value="ar">العربية</option>
+            </select>
+          </div>
+          <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle light/dark mode">
+            <i class="fas fa-sun"></i>
+          </button>
         </div>
       </div>
+
+      <!-- HAMBURGER (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" data-key="nav-about" class="mobile-nav-link">About Us</a>
+    <a href="#services" data-key="nav-services" class="mobile-nav-link">Our Services</a>
+    <a href="#why-us" data-key="nav-why" class="mobile-nav-link">Why Us</a>
+    <a href="#partners" data-key="nav-partners" class="mobile-nav-link">Partners</a>
+    <a href="#contact" data-key="nav-contact" class="mobile-nav-link">Contact Us</a>
+    <div class="mobile-controls">
+      <div class="lang-box-mobile">
+        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M17.9,17.39C17.64,16.58 16.9,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C18.55,5.78 21,9.11 21,13C21,14.63 20.45,16.13 19.53,17.33L17.9,17.39Z"/></svg>
+        <select id="lang-select-mobile">
+          <option value="en">English</option>
+          <option value="ku">کوردی</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+      <button class="theme-toggle-mobile" id="theme-toggle-mobile" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg-slider" id="hero-slider">
       <img src="assets/up-page1.jpg" alt="Premium IT Infrastructure" class="active">
@@ -545,7 +607,6 @@
       <img src="assets/up-page3.jpg" alt="CCTV Systems">
       <img src="assets/up-page4.jpg" alt="Data Centers">
     </div>
-
     <div class="container">
       <div class="hero-text-box">
         <div class="hero-tag" data-key="hero-tag">Smart Solutions</div>
@@ -556,13 +617,13 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about" class="about">
     <div class="container about-grid">
       <div class="about-content">
         <h2 data-key="about-title">ABOUT US</h2>
         <p id="about-text"><strong>MySelect</strong> is a leading IT and Communication Solutions provider specializing in integrated technologies for businesses of all sizes. Our mission is to deliver reliable, secure, and scalable solutions that enhance productivity, safety, and connectivity.</p>
       </div>
-      
       <div class="about-hexagon-container">
         <div class="hexagon-glow-border">
           <div class="hexagon-content">
@@ -577,146 +638,48 @@
     </div>
   </section>
 
+  <!-- SERVICES -->
   <section id="services" class="services">
     <div class="container">
       <div class="section-title">
         <h2 data-key="services-title">OUR SERVICES</h2>
         <div class="bar"></div>
       </div>
-
       <div class="services-grid">
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-voip.jpg" alt="VoIP"></div>
-          <div class="service-info">
-            <h3>VOICE OVER IP - VOIP</h3>
-            <p data-key="s1-desc">Advanced communication systems designed for seamless internal and external connectivity.</p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-isp.jpg" alt="ISP"></div>
-          <div class="service-info">
-            <h3>INTERNET SERVICE PROVIDER (ISP)</h3>
-            <p data-key="s2-desc">High-speed and reliable internet connectivity tailored for corporate and enterprise requirements.</p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-fiber.jpg" alt="Fiber Optic"></div>
-          <div class="service-info">
-            <h3>FIBER OPTIC SOLUTION</h3>
-            <p data-key="s3-desc">End-to-end fiber optic splicing, termination, and infrastructure deployment for ultra-fast networking.</p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-network.jpg" alt="Network Infrastructure"></div>
-          <div class="service-info">
-            <h3>NETWORK INFRASTRUCTURE DESIGN</h3>
-            <p data-key="s4-desc">Professional layout planning, switching, routing, and robust architecture for enterprise topologies.</p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-cctv.jpg" alt="CCTV"></div>
-          <div class="service-info">
-            <h3>SURVEILLANCE SYSTEM - CCTV</h3>
-            <p data-key="s5-desc">Next-generation IP cameras, network video recorders, and remote monitoring smart security systems.</p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-fire-alarm.jpg" alt="Fire Alarm"></div>
-          <div class="service-info">
-            <h3>FIRE ALARM & SAFETY SYSTEM</h3>
-            <p data-key="s6-desc">Intelligent fire detection, smart smoke alarms, and automated evacuation safety setups.</p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-access-control.jpg" alt="Access Control"></div>
-          <div class="service-info">
-            <h3>ACCESS CONTROL SYSTEM</h3>
-            <p data-key="s7-desc">Secure and intelligent biometric, RFID, and multi-door management entry protocols.</p>
-          </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-img"><img src="assets/service-ups.jpg" alt="UPS Power"></div>
-          <div class="service-info">
-            <h3>POWER SYSTEM - UPS</h3>
-            <p data-key="s8-desc">Reliable power backup, professional UPS setups, and constant performance emergency systems.</p>
-          </div>
-        </div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-voip.jpg" alt="VoIP"></div><div class="service-info"><h3>VOICE OVER IP - VOIP</h3><p data-key="s1-desc">Advanced communication systems designed for seamless internal and external connectivity.</p></div></div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-isp.jpg" alt="ISP"></div><div class="service-info"><h3>INTERNET SERVICE PROVIDER (ISP)</h3><p data-key="s2-desc">High-speed and reliable internet connectivity tailored for corporate and enterprise requirements.</p></div></div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-fiber.jpg" alt="Fiber Optic"></div><div class="service-info"><h3>FIBER OPTIC SOLUTION</h3><p data-key="s3-desc">End-to-end fiber optic splicing, termination, and infrastructure deployment for ultra-fast networking.</p></div></div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-network.jpg" alt="Network Infrastructure"></div><div class="service-info"><h3>NETWORK INFRASTRUCTURE DESIGN</h3><p data-key="s4-desc">Professional layout planning, switching, routing, and robust architecture for enterprise topologies.</p></div></div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-cctv.jpg" alt="CCTV"></div><div class="service-info"><h3>SURVEILLANCE SYSTEM - CCTV</h3><p data-key="s5-desc">Next-generation IP cameras, network video recorders, and remote monitoring smart security systems.</p></div></div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-fire-alarm.jpg" alt="Fire Alarm"></div><div class="service-info"><h3>FIRE ALARM & SAFETY SYSTEM</h3><p data-key="s6-desc">Intelligent fire detection, smart smoke alarms, and automated evacuation safety setups.</p></div></div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-access-control.jpg" alt="Access Control"></div><div class="service-info"><h3>ACCESS CONTROL SYSTEM</h3><p data-key="s7-desc">Secure and intelligent biometric, RFID, and multi-door management entry protocols.</p></div></div>
+        <div class="service-card"><div class="service-img"><img src="assets/service-ups.jpg" alt="UPS Power"></div><div class="service-info"><h3>POWER SYSTEM - UPS</h3><p data-key="s8-desc">Reliable power backup, professional UPS setups, and constant performance emergency systems.</p></div></div>
       </div>
     </div>
   </section>
 
+  <!-- WHY US -->
   <section id="why-us" class="why-us">
     <div class="container">
       <div class="section-title">
         <h2 data-key="why-title">WHY US?</h2>
         <div class="bar"></div>
       </div>
-
       <div class="why-us-grid">
-        <div class="why-item">
-          <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
-          <div class="why-content">
-            <h3 data-key="w1-title">Experienced & Reliable</h3>
-            <p data-key="w1-desc">7 Years of experience delivering trusted and dependable solutions.</p>
-          </div>
-        </div>
-
-        <div class="why-item">
-          <div class="why-icon"><i class="fas fa-bullseye"></i></div>
-          <div class="why-content">
-            <h3 data-key="w2-title">Customized Solutions</h3>
-            <p data-key="w2-desc">Tailored systems designed to meet your specific business needs.</p>
-          </div>
-        </div>
-
-        <div class="why-item">
-          <div class="why-icon"><i class="fas fa-users-gear"></i></div>
-          <div class="why-content">
-            <h3 data-key="w3-title">Professional Team</h3>
-            <p data-key="w3-desc">Skilled and certified team with dedication to excellence.</p>
-          </div>
-        </div>
-
-        <div class="why-item">
-          <div class="why-icon"><i class="fas fa-headset"></i></div>
-          <div class="why-content">
-            <h3 data-key="w4-title">Fast Support</h3>
-            <p data-key="w4-desc">Quick response and 24/7 support to ensure smooth operations.</p>
-          </div>
-        </div>
-
-        <div class="why-item">
-          <div class="why-icon"><i class="fas fa-chart-line"></i></div>
-          <div class="why-content">
-            <h3 data-key="w5-title">Quality & Performance</h3>
-            <p data-key="w5-desc">High quality products and services for maximum performance.</p>
-          </div>
-        </div>
-
-        <div class="why-item">
-          <div class="why-icon"><i class="fas fa-handshake"></i></div>
-          <div class="why-content">
-            <h3 data-key="w6-title">Long Term Partnership</h3>
-            <p data-key="w6-desc">Building long lasting relationships based on trust and satisfaction.</p>
-          </div>
-        </div>
+        <div class="why-item"><div class="why-icon"><i class="fas fa-shield-alt"></i></div><div class="why-content"><h3 data-key="w1-title">Experienced & Reliable</h3><p data-key="w1-desc">7 Years of experience delivering trusted and dependable solutions.</p></div></div>
+        <div class="why-item"><div class="why-icon"><i class="fas fa-bullseye"></i></div><div class="why-content"><h3 data-key="w2-title">Customized Solutions</h3><p data-key="w2-desc">Tailored systems designed to meet your specific business needs.</p></div></div>
+        <div class="why-item"><div class="why-icon"><i class="fas fa-users-gear"></i></div><div class="why-content"><h3 data-key="w3-title">Professional Team</h3><p data-key="w3-desc">Skilled and certified team with dedication to excellence.</p></div></div>
+        <div class="why-item"><div class="why-icon"><i class="fas fa-headset"></i></div><div class="why-content"><h3 data-key="w4-title">Fast Support</h3><p data-key="w4-desc">Quick response and 24/7 support to ensure smooth operations.</p></div></div>
+        <div class="why-item"><div class="why-icon"><i class="fas fa-chart-line"></i></div><div class="why-content"><h3 data-key="w5-title">Quality & Performance</h3><p data-key="w5-desc">High quality products and services for maximum performance.</p></div></div>
+        <div class="why-item"><div class="why-icon"><i class="fas fa-handshake"></i></div><div class="why-content"><h3 data-key="w6-title">Long Term Partnership</h3><p data-key="w6-desc">Building long lasting relationships based on trust and satisfaction.</p></div></div>
       </div>
     </div>
   </section>
 
+  <!-- PARTNERS -->
   <section id="partners" class="partners-section">
     <div class="container">
-      <div class="section-title">
-        <h2 data-key="partners-title">OUR TECHNOLOGY PARTNERS</h2>
-        <div class="bar"></div>
-      </div>
+      <div class="section-title"><h2 data-key="partners-title">OUR TECHNOLOGY PARTNERS</h2><div class="bar"></div></div>
       <div class="grid-logos">
         <div class="logo-item"><img src="assets/partner/yealink.png" alt="Yealink"></div>
         <div class="logo-item"><img src="assets/partner/cisco.png" alt="Cisco"></div>
@@ -733,17 +696,15 @@
     </div>
   </section>
 
+  <!-- CLIENTS -->
   <section id="clients" class="clients-section">
     <div class="container">
-      <div class="section-title">
-        <h2 data-key="clients-title">OUR CLIENTS</h2>
-        <div class="bar"></div>
-      </div>
+      <div class="section-title"><h2 data-key="clients-title">OUR CLIENTS</h2><div class="bar"></div></div>
       <div class="grid-logos">
         <div class="logo-item"><img src="assets/client/aman.png" alt="Aman"></div>
         <div class="logo-item"><img src="assets/client/laratel.png" alt="Laratel"></div>
         <div class="logo-item"><img src="assets/client/krg.png" alt="KRG"></div>
-        <div class="logo-item"><img src="assets/client/hasco.png" alt="عقارات حسكو"></div>
+        <div class="logo-item"><img src="assets/client/hasco.png" alt="Hasco"></div>
         <div class="logo-item"><img src="assets/client/online.png" alt="Online"></div>
         <div class="logo-item"><img src="assets/client/latinblue.png" alt="Latin Blue"></div>
         <div class="logo-item"><img src="assets/client/vano.png" alt="Vano Group"></div>
@@ -752,239 +713,216 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact" class="contact">
     <div class="container contact-grid">
       <div class="contact-details">
         <h3 id="contact-title">LET'S BUILD A SMARTER FUTURE TOGETHER</h3>
         <p data-key="contact-sub">Have a project or question? Reach out to us, and our expert team will get back to you immediately.</p>
-        
         <div class="info-list">
-          <div class="info-box">
-            <span class="icon">📞</span>
-            <div>
-              <h5 data-key="c-phone">Phone</h5>
-              <p>+964 750 622 4646<br>+964 750 622 4747</p>
-            </div>
-          </div>
-          <div class="info-box">
-            <span class="icon">✉️</span>
-            <div>
-              <h5 data-key="c-email">Email</h5>
-              <p>info@myselect.krd</p>
-            </div>
-          </div>
-          <div class="info-box">
-            <span class="icon">📍</span>
-            <div>
-              <h5 data-key="c-location">Location</h5>
-              <p id="contact-location-text" data-key="contact-loc">Sultan Mozafar, Erbil, KRG, IRAQ 44001</p>
-            </div>
-          </div>
+          <div class="info-box"><span class="icon">📞</span><div><h5 data-key="c-phone">Phone</h5><p>+964 750 622 4646<br>+964 750 622 4747</p></div></div>
+          <div class="info-box"><span class="icon">✉️</span><div><h5 data-key="c-email">Email</h5><p>info@myselect.krd</p></div></div>
+          <div class="info-box"><span class="icon">📍</span><div><h5 data-key="c-location">Location</h5><p id="contact-location-text" data-key="contact-loc">Sultan Mozafar, Erbil, KRG, IRAQ 44001</p></div></div>
         </div>
-
         <div class="social-links">
-          <a href="https://www.facebook.com/wazer.mzuri" class="social-icon" title="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/share/1ERjEmzc9n/?mibextid=wwXIfr" class="social-icon" title="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/myselect.krd?igsh=OWtvNHpuNjNpanpy" class="social-icon" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
           <a href="#" class="social-icon" title="TikTok" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
-
       <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="f3e22947-d597-4f35-bc65-8a17a6edadc0">
-        
-        <div class="form-group">
-          <input type="text" name="name" placeholder="Your Name" required data-key="f-name">
-        </div>
-        <div class="form-group">
-          <input type="email" name="email" placeholder="Your Email" required data-key="f-email">
-        </div>
-        <div class="form-group">
-          <input type="text" name="subject" placeholder="Subject" required id="form-subject-input">
-        </div>
-        <div class="form-group">
-          <textarea name="message" rows="5" placeholder="Your Message" required data-key="f-message"></textarea>
-        </div>
+        <div class="form-group"><input type="text" name="name" placeholder="Your Name" required data-key="f-name"></div>
+        <div class="form-group"><input type="email" name="email" placeholder="Your Email" required data-key="f-email"></div>
+        <div class="form-group"><input type="text" name="subject" placeholder="Subject" required id="form-subject-input"></div>
+        <div class="form-group"><textarea name="message" rows="5" placeholder="Your Message" required data-key="f-message"></textarea></div>
         <button class="btn-submit" type="submit" data-key="form-btn">Send Message</button>
       </form>
     </div>
   </section>
 
   <script>
-    // ⏱️ Hero Background Slider Loop (5s)
-    const images = document.querySelectorAll('#hero-slider img');
-    let currentIndex = 0;
+    // ===== THEME TOGGLE =====
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    let isDark = true;
 
-    function changeImage() {
-      images[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % images.length;
-      images[currentIndex].classList.add('active');
+    function setTheme(dark) {
+      isDark = dark;
+      html.setAttribute('data-theme', dark ? 'dark' : 'light');
+      const icon = dark ? 'fa-sun' : 'fa-moon';
+      themeToggle.innerHTML = `<i class="fas ${icon}"></i>`;
+      themeToggleMobile.innerHTML = `<i class="fas ${icon}"></i>`;
     }
-    setInterval(changeImage, 5000);
 
-    // ⏱️ About Section Slider Loop (4 Seconds) & Golden Point 1.5-Second Rotation
+    themeToggle.addEventListener('click', () => setTheme(!isDark));
+    themeToggleMobile.addEventListener('click', () => setTheme(!isDark));
+
+    // ===== HAMBURGER MENU =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      if (isOpen) {
+        mobileMenu.style.display = 'flex';
+        requestAnimationFrame(() => mobileMenu.classList.add('open'));
+        document.body.style.overflow = 'hidden';
+      } else {
+        closeMobileMenu();
+      }
+    });
+
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => { if (!mobileMenu.classList.contains('open')) mobileMenu.style.display = 'none'; }, 350);
+    }
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // ===== HERO SLIDER =====
+    const heroImages = document.querySelectorAll('#hero-slider img');
+    let heroIndex = 0;
+    setInterval(() => {
+      heroImages[heroIndex].classList.remove('active');
+      heroIndex = (heroIndex + 1) % heroImages.length;
+      heroImages[heroIndex].classList.add('active');
+    }, 5000);
+
+    // ===== ABOUT SLIDER =====
     const aboutImages = document.querySelectorAll('#about-slider .about-slide-img');
     const glowBorder = document.querySelector('.hexagon-glow-border');
-    let currentAboutIndex = 0;
-
-    function changeAboutImage() {
+    let aboutIndex = 0;
+    setInterval(() => {
       glowBorder.classList.remove('pulse-rotate');
-      void glowBorder.offsetWidth; 
+      void glowBorder.offsetWidth;
       glowBorder.classList.add('pulse-rotate');
+      aboutImages[aboutIndex].classList.remove('active');
+      aboutIndex = (aboutIndex + 1) % aboutImages.length;
+      aboutImages[aboutIndex].classList.add('active');
+    }, 4000);
 
-      aboutImages[currentAboutIndex].classList.remove('active');
-      currentAboutIndex = (currentAboutIndex + 1) % aboutImages.length;
-      aboutImages[currentAboutIndex].classList.add('active');
-    }
-    setInterval(changeAboutImage, 4000);
-
-    // 🌐 Multi-Language Translation Data Object
+    // ===== LANGUAGE DATA =====
     const langData = {
       en: {
-        "nav-about": "About Us",
-        "nav-services": "Our Services",
-        "nav-why": "Why Us",
-        "nav-partners": "Partners",
-        "nav-contact": "Contact Us",
-        "hero-tag": "Smart Solutions",
-        "hero-title": "IT SECURITY &<br><span>COMMUNICATION SOLUTIONS</span>",
-        "hero-motto": `"-TRUST THE PROFESSIONALS-"`,
-        "hero-btn": "Explore Our Services",
-        "about-title": "ABOUT US",
-        "about-text": "<strong>MySelect</strong> is a leading IT and Communication Solutions provider specializing in integrated technologies for businesses of all sizes. Our mission is to deliver reliable, secure, and scalable solutions that enhance productivity, safety, and connectivity.",
-        "services-title": "OUR SERVICES",
-        "s1-desc": "Advanced communication systems designed for seamless internal and external connectivity.",
-        "s2-desc": "High-speed and reliable internet connectivity tailored for corporate and enterprise requirements.",
-        "s3-desc": "End-to-end fiber optic splicing, termination, and infrastructure deployment for ultra-fast networking.",
-        "s4-desc": "Professional layout planning, switching, routing, and robust architecture for enterprise topologies.",
-        "s5-desc": "Next-generation IP cameras, network video recorders, and remote monitoring smart security systems.",
-        "s6-desc": "Intelligent fire detection, smart smoke alarms, and automated evacuation safety setups.",
-        "s7-desc": "Secure and intelligent biometric, RFID, and multi-door management entry protocols.",
-        "s8-desc": "Reliable power backup, professional UPS setups, and constant performance emergency systems.",
-        "why-title": "WHY US?",
-        "w1-title": "Experienced & Reliable", "w1-desc": "7 Years of experience delivering trusted and dependable solutions.",
-        "w2-title": "Customized Solutions", "w2-desc": "Tailored systems designed to meet your specific business needs.",
-        "w3-title": "Professional Team", "w3-desc": "Skilled and certified team with dedication to excellence.",
-        "w4-title": "Fast Support", "w4-desc": "Quick response and 24/7 support to ensure smooth operations.",
-        "w5-title": "Quality & Performance", "w5-desc": "High quality products and services for maximum performance.",
-        "w6-title": "Long Term Partnership", "w6-desc": "Building long lasting relationships based on trust and satisfaction.",
-        "partners-title": "OUR TECHNOLOGY PARTNERS",
-        "clients-title": "OUR CLIENTS",
-        "contact-title": "LET'S BUILD A SMARTER FUTURE TOGETHER",
-        "contact-sub": "Have a project or question? Reach out to us, and our expert team will get back to you immediately.",
-        "c-phone": "Phone", "c-email": "Email", "c-location": "Location",
-        "contact-loc": "Sultan Mozafar, Erbil, KRG, IRAQ 44001",
-        "f-name": "Your Name", "f-email": "Your Email", "f-subject": "Subject", "f-message": "Your Message", "form-btn": "Send Message"
+        "nav-about":"About Us","nav-services":"Our Services","nav-why":"Why Us","nav-partners":"Partners","nav-contact":"Contact Us",
+        "hero-tag":"Smart Solutions","hero-title":"IT SECURITY &<br><span>COMMUNICATION SOLUTIONS</span>","hero-motto":"\"-TRUST THE PROFESSIONALS-\"","hero-btn":"Explore Our Services",
+        "about-title":"ABOUT US","about-text":"<strong>MySelect</strong> is a leading IT and Communication Solutions provider specializing in integrated technologies for businesses of all sizes. Our mission is to deliver reliable, secure, and scalable solutions that enhance productivity, safety, and connectivity.",
+        "services-title":"OUR SERVICES",
+        "s1-desc":"Advanced communication systems designed for seamless internal and external connectivity.",
+        "s2-desc":"High-speed and reliable internet connectivity tailored for corporate and enterprise requirements.",
+        "s3-desc":"End-to-end fiber optic splicing, termination, and infrastructure deployment for ultra-fast networking.",
+        "s4-desc":"Professional layout planning, switching, routing, and robust architecture for enterprise topologies.",
+        "s5-desc":"Next-generation IP cameras, network video recorders, and remote monitoring smart security systems.",
+        "s6-desc":"Intelligent fire detection, smart smoke alarms, and automated evacuation safety setups.",
+        "s7-desc":"Secure and intelligent biometric, RFID, and multi-door management entry protocols.",
+        "s8-desc":"Reliable power backup, professional UPS setups, and constant performance emergency systems.",
+        "why-title":"WHY US?",
+        "w1-title":"Experienced & Reliable","w1-desc":"7 Years of experience delivering trusted and dependable solutions.",
+        "w2-title":"Customized Solutions","w2-desc":"Tailored systems designed to meet your specific business needs.",
+        "w3-title":"Professional Team","w3-desc":"Skilled and certified team with dedication to excellence.",
+        "w4-title":"Fast Support","w4-desc":"Quick response and 24/7 support to ensure smooth operations.",
+        "w5-title":"Quality & Performance","w5-desc":"High quality products and services for maximum performance.",
+        "w6-title":"Long Term Partnership","w6-desc":"Building long lasting relationships based on trust and satisfaction.",
+        "partners-title":"OUR TECHNOLOGY PARTNERS","clients-title":"OUR CLIENTS",
+        "contact-title":"LET'S BUILD A SMARTER FUTURE TOGETHER","contact-sub":"Have a project or question? Reach out to us, and our expert team will get back to you immediately.",
+        "c-phone":"Phone","c-email":"Email","c-location":"Location","contact-loc":"Sultan Mozafar, Erbil, KRG, IRAQ 44001",
+        "f-name":"Your Name","f-email":"Your Email","f-subject":"Subject","f-message":"Your Message","form-btn":"Send Message"
       },
       ku: {
-        "nav-about": "دەربارەی ئێمە",
-        "nav-services": "خزمەتگوزارییەکان",
-        "nav-why": "بۆچی ئێمە؟",
-        "nav-partners": "هاوبەشەکان",
-        "nav-contact": "پەیوەندیمان پێوە بکە",
-        "hero-tag": "چارەسەری زیرەک",
-        "hero-title": "ئاسایشی ئایتی و<br><span>چارەسەرەکانی پەیوەندی</span>",
-        "hero-motto": `"-متمانە بە دۆسیەکاران و پیشەگەران بکە-"`,
-        "hero-btn": "خزمەتگوزارییەکانمان ببینە",
-        "about-title": "دەربارەی ئێمە",
-        "about-text": "کۆمپانیای <strong>MySelect</strong> پێشەنگە لە پێشکەشکردنی چارەسەرەکانی تەکنەلۆژیای زانیاری و پەیوەندییەکان، و تایبەتمەندە بە دابینکردنی سیستەمی یەکگرتوو بۆ کارە جیاوازەکان. ئامانجمان دابینکردنی خزمەتگوزاری باوەڕپێکراو، پارێزراو و پێشکەوتووە بۆ بەرزکردنەوەی ئاستی بەرهەمهێنان، سەلامەتی و پەیوەندی گونجاو.",
-        "services-title": "خزمەتگوزارییەکانمان",
-        "s1-desc": "سیستەمی پێشکەوتووی پەیوەندی دەنگی ناوخۆیی و دەرەکی بە کوالێتی بەرز.",
-        "s2-desc": "هێڵی ئینتەرنێتی خێرا و جێگیر تایبەت بە کۆمپانیا و دامەزراوە بازرگانییەکان.",
-        "s3-desc": "راستکردنەوە، بەستنەوە و دابینکردنی ژێرخانی کێبڵی ڕیشاڵی نیشتیمانی (فایبەر ئۆپتیک).",
-        "s4-desc": "دیزاینکردنی تۆڕەکان، ڕوتینگ و سویچینگ بە شێوازی ئەندازیاری پێشکەوتوو.",
-        "s5-desc": "کامیراوبەدواداچوونی پێشکەوتووی IP، ئامێری تۆمارکردنی NVR و سیستەمی کۆنترۆڵ لەدوورەوە.",
-        "s6-desc": "سیستەمی زیرەکی ئاگادارکردنەوەی ئاگرکەوتنەوە و دووکەڵ بۆ پاراستنی گیانی هاوڵاتیان.",
-        "s7-desc": "سیستەمی دەروازەی ئەلیکترۆنی، کۆنترۆڵی هاتووچۆ بە پەنجەمۆر، دەموچاو و کارتی زیرەک.",
-        "s8-desc": "دابینکردنی کارەبای بەردەوام و سیستەمی professional UPS بۆ کاتی نەبوونی کارەبا.",
-        "why-title": "بۆچی ئێمە؟",
-        "w1-title": "خاوەن ئەزموون و باوەڕپێکراو", "w1-desc": "٧ ساڵ ئەزموونی سەرکەوتوو لە پێشکەشکردنی خزمەتگوزارییەکان.",
-        "w2-title": "چارەسەری تایبەت", "w2-desc": "دیزاینکردنی سیستەمەکان بەپێی پێویستی و داواکاری وردی کارەکەت.",
-        "w3-title": "تیمی پیشەگەر", "w3-desc": "تیمێکی ڕاهێنراو و بڕوانامەدار کە کار بۆ بەدەستهێنانی باشترین دەکەن.",
-        "w4-title": "پشتیوانی خێرا", "w4-desc": "وەڵامدانەوەی خێرا و پشتیوانی ٢٤ کاتژمێری بۆ بەردەوامبوونی کارەکانتان.",
-        "w5-title": "کوالێتی و کارامەیی", "w5-desc": "بەکارهێنانی باشترین بەرهەم و کەرەستە بۆ بەرزترین ئاستی بەرهەم.",
-        "w6-title": "هاوبەشی درێژخایەن", "w6-desc": "بنیاتنانی پەیوەندی بەهێز لەسەر بنەمای متمانە و ڕەزامەندی کڕیاران.",
-        "partners-title": "هاوبەشە تەکنەلۆژییەکانمان",
-        "clients-title": "کڕیارەکانمان",
-        "contact-title": "با پێکەوە داهاتوویەکی زیرەکتر بنیات بنێین",
-        "contact-sub": "پرۆژەیەک یان پرسیارێکت هەیە؟ نامە بنێرە و تیمی پسپۆڕمان دەستبەجێ وەڵامت دەدەنەوە.",
-        "c-phone": "ژمارەی تەلەفۆن", "c-email": "ئیمەیڵ", "c-location": "ناونیشان",
-        "contact-loc": "سولتان موزەفەر، هەولێر، هەرێمی کوردستان، عێراق 44001",
-        "f-name": "ناوەکەت", "f-email": "ئیمەیڵەکەت", "f-subject": "بابەت", "f-message": "نامەکەت", "form-btn": "نامەکە بنێرە"
+        "nav-about":"دەربارەی ئێمە","nav-services":"خزمەتگوزارییەکان","nav-why":"بۆچی ئێمە؟","nav-partners":"هاوبەشەکان","nav-contact":"پەیوەندیمان پێوە بکە",
+        "hero-tag":"چارەسەری زیرەک","hero-title":"ئاسایشی ئایتی و<br><span>چارەسەرەکانی پەیوەندی</span>","hero-motto":"\"-متمانە بە دۆسیەکاران و پیشەگەران بکە-\"","hero-btn":"خزمەتگوزارییەکانمان ببینە",
+        "about-title":"دەربارەی ئێمە","about-text":"کۆمپانیای <strong>MySelect</strong> پێشەنگە لە پێشکەشکردنی چارەسەرەکانی تەکنەلۆژیای زانیاری و پەیوەندییەکان. ئامانجمان دابینکردنی خزمەتگوزاری باوەڕپێکراو، پارێزراو و پێشکەوتووە بۆ بەرزکردنەوەی ئاستی بەرهەمهێنان، سەلامەتی و پەیوەندی گونجاو.",
+        "services-title":"خزمەتگوزارییەکانمان",
+        "s1-desc":"سیستەمی پێشکەوتووی پەیوەندی دەنگی ناوخۆیی و دەرەکی بە کوالێتی بەرز.",
+        "s2-desc":"هێڵی ئینتەرنێتی خێرا و جێگیر تایبەت بە کۆمپانیا و دامەزراوە بازرگانییەکان.",
+        "s3-desc":"راستکردنەوە، بەستنەوە و دابینکردنی ژێرخانی کێبڵی فایبەر ئۆپتیک.",
+        "s4-desc":"دیزاینکردنی تۆڕەکان، ڕوتینگ و سویچینگ بە شێوازی ئەندازیاری پێشکەوتوو.",
+        "s5-desc":"کامیراوبەدواداچوونی پێشکەوتووی IP، ئامێری تۆمارکردنی NVR و سیستەمی کۆنترۆڵ لەدوورەوە.",
+        "s6-desc":"سیستەمی زیرەکی ئاگادارکردنەوەی ئاگرکەوتنەوە و دووکەڵ بۆ پاراستنی گیانی هاوڵاتیان.",
+        "s7-desc":"سیستەمی دەروازەی ئەلیکترۆنی، کۆنترۆڵی هاتووچۆ بە پەنجەمۆر، دەموچاو و کارتی زیرەک.",
+        "s8-desc":"دابینکردنی کارەبای بەردەوام و سیستەمی professional UPS بۆ کاتی نەبوونی کارەبا.",
+        "why-title":"بۆچی ئێمە؟",
+        "w1-title":"خاوەن ئەزموون و باوەڕپێکراو","w1-desc":"٧ ساڵ ئەزموونی سەرکەوتوو لە پێشکەشکردنی خزمەتگوزارییەکان.",
+        "w2-title":"چارەسەری تایبەت","w2-desc":"دیزاینکردنی سیستەمەکان بەپێی پێویستی و داواکاری وردی کارەکەت.",
+        "w3-title":"تیمی پیشەگەر","w3-desc":"تیمێکی ڕاهێنراو و بڕوانامەدار کە کار بۆ بەدەستهێنانی باشترین دەکەن.",
+        "w4-title":"پشتیوانی خێرا","w4-desc":"وەڵامدانەوەی خێرا و پشتیوانی ٢٤ کاتژمێری بۆ بەردەوامبوونی کارەکانتان.",
+        "w5-title":"کوالێتی و کارامەیی","w5-desc":"بەکارهێنانی باشترین بەرهەم و کەرەستە بۆ بەرزترین ئاستی بەرهەم.",
+        "w6-title":"هاوبەشی درێژخایەن","w6-desc":"بنیاتنانی پەیوەندی بەهێز لەسەر بنەمای متمانە و ڕەزامەندی کڕیاران.",
+        "partners-title":"هاوبەشە تەکنەلۆژییەکانمان","clients-title":"کڕیارەکانمان",
+        "contact-title":"با پێکەوە داهاتوویەکی زیرەکتر بنیات بنێین","contact-sub":"پرۆژەیەک یان پرسیارێکت هەیە؟ نامە بنێرە و تیمی پسپۆڕمان دەستبەجێ وەڵامت دەدەنەوە.",
+        "c-phone":"ژمارەی تەلەفۆن","c-email":"ئیمەیڵ","c-location":"ناونیشان","contact-loc":"سولتان موزەفەر، هەولێر، هەرێمی کوردستان، عێراق 44001",
+        "f-name":"ناوەکەت","f-email":"ئیمەیڵەکەت","f-subject":"بابەت","f-message":"نامەکەت","form-btn":"نامەکە بنێرە"
       },
       ar: {
-        "nav-about": "من نحن",
-        "nav-services": "خدماتنا",
-        "nav-why": "لماذا نحن؟",
-        "nav-partners": "شركاؤنا",
-        "nav-contact": "اتصل بنا",
-        "hero-tag": "حلول ذكية",
-        "hero-title": "أمن تكنولوجيا المعلومات<br><span>وحلول الاتصالات</span>",
-        "hero-motto": `"-ثق بالمحترفين-"`,
-        "hero-btn": "اكتشف خدماتنا",
-        "about-title": "من نحن",
-        "about-text": "تعتبر <strong>MySelect</strong> شركة رائدة في مجال تقديم حلول تكنولوجيا المعلومات والاتصالات، ومتخصصة في الأنظمة المتكاملة للشركات من جميع الأحجام. مهمتنا هي تقديم حلول موثوقة وآمنة وقابلة للتطوير تعزز الإنتاجية والسلامة والاتصال.",
-        "services-title": "خدماتنا",
-        "s1-desc": "أنظمة اتصالات متطورة مصممة للاتصال الداخلي والخارجي السلس.",
-        "s2-desc": "اتصال إنترنت سريع وموثوق ومصمم خصيصاً لمتطلبات الشركات والمؤسسات.",
-        "s3-desc": "لحام وإنهاء وتوصيل كابلات الألياف الضوئية (الفايبر) للبنية التحتية فائقة السرعة.",
-        "s4-desc": "التخطيط الاحترافي للشبكات، التوجيه (الراوتنج)، والتبديل (السويتشنج) لهياكل الشركات.",
-        "s5-desc": "كاميرات مراقبة IP من الجيل الجديد، أجهزة تسجيل NVR، وأنظمة أمان ذكية للمراقبة عن بعد.",
-        "s6-desc": "أنظمة ذكية للكشف عن الحرائق، إنذار الدخان الذكي، وإجراءات الإخلاء الآلي للسلامة.",
-        "s7-desc": "بروتوكولات دخول آمنة وذكية تعتمد على البصمة، التعرف على الوجه، وبطاقات RFID.",
-        "s8-desc": "أنظمة طاقة احتياطية موثوقة (UPS) تضمن استمرارية العمل والأداء العالي أثناء انقطاع التيار.",
-        "why-title": "لماذا نحن؟",
-        "w1-title": "خبرة وموثوقية", "w1-desc": "٧ سنوات من الخبرة في تقديم حلول موثوقة ومعتمدة.",
-        "w2-title": "حلول مخصصة", "w2-desc": "أنظمة مصممة خصيصاً لتلبية احتياجات عملك المحددة.",
-        "w3-title": "فريق محترف", "w3-desc": "فريق ماهر ومعتمد ومكرس لتحقيق التميز في العمل.",
-        "w4-title": "دعم سريع", "w4-desc": "استجابة سريعة ودعم على مدار الساعة لضمان سير العمل بسلاسة.",
-        "w5-title": "الجودة والأداء", "w5-desc": "منتجات وخدمات عالية الجودة لتحقيق أقصى مستويات الأداء.",
-        "w6-title": "شراكة طويلة الأمد", "w6-desc": "بناء علاقات دائمية قائمة على الثقة المتبادلة ورضا العملاء.",
-        "partners-title": "شركاؤنا التكنولوجيون",
-        "clients-title": "عملائنا",
-        "contact-title": "لنقم ببناء مستقبل أكثر ذكاءً معاً",
-        "contact-sub": "هل لديك مشروع أو استفسار؟ تواصل معنا، وسيقوم فريق الخبراء لدينا بالرد عليك فوراً.",
-        "c-phone": "الهاتف", "c-email": "البريد الإلكتروني", "c-location": "الموقع",
-        "contact-loc": "سلطان مظفر، أربيل، إقليم كردستان، العراق 44001",
-        "f-name": "اسمك", "f-email": "بريدك الإلكتروني", "f-subject": "الموضوع", "f-message": "رسالتك", "form-btn": "إرسال الرسالة"
+        "nav-about":"من نحن","nav-services":"خدماتنا","nav-why":"لماذا نحن؟","nav-partners":"شركاؤنا","nav-contact":"اتصل بنا",
+        "hero-tag":"حلول ذكية","hero-title":"أمن تكنولوجيا المعلومات<br><span>وحلول الاتصالات</span>","hero-motto":"\"-ثق بالمحترفين-\"","hero-btn":"اكتشف خدماتنا",
+        "about-title":"من نحن","about-text":"تعتبر <strong>MySelect</strong> شركة رائدة في مجال تقديم حلول تكنولوجيا المعلومات والاتصالات، ومتخصصة في الأنظمة المتكاملة للشركات من جميع الأحجام. مهمتنا تقديم حلول موثوقة وآمنة وقابلة للتطوير تعزز الإنتاجية والسلامة والاتصال.",
+        "services-title":"خدماتنا",
+        "s1-desc":"أنظمة اتصالات متطورة مصممة للاتصال الداخلي والخارجي السلس.",
+        "s2-desc":"اتصال إنترنت سريع وموثوق مصمم لمتطلبات الشركات والمؤسسات.",
+        "s3-desc":"لحام وإنهاء وتوصيل كابلات الألياف الضوئية للبنية التحتية فائقة السرعة.",
+        "s4-desc":"التخطيط الاحترافي للشبكات، التوجيه والتبديل لهياكل الشركات.",
+        "s5-desc":"كاميرات IP من الجيل الجديد، أجهزة تسجيل NVR، وأنظمة أمان ذكية.",
+        "s6-desc":"أنظمة ذكية للكشف عن الحرائق وإنذار الدخان وإجراءات الإخلاء الآلي.",
+        "s7-desc":"بروتوكولات دخول آمنة تعتمد على البصمة والتعرف على الوجه وبطاقات RFID.",
+        "s8-desc":"أنظمة طاقة احتياطية موثوقة UPS لضمان استمرارية العمل.",
+        "why-title":"لماذا نحن؟",
+        "w1-title":"خبرة وموثوقية","w1-desc":"٧ سنوات من الخبرة في تقديم حلول موثوقة ومعتمدة.",
+        "w2-title":"حلول مخصصة","w2-desc":"أنظمة مصممة خصيصاً لتلبية احتياجات عملك.",
+        "w3-title":"فريق محترف","w3-desc":"فريق ماهر ومعتمد ومكرس لتحقيق التميز.",
+        "w4-title":"دعم سريع","w4-desc":"استجابة سريعة ودعم على مدار الساعة.",
+        "w5-title":"الجودة والأداء","w5-desc":"منتجات وخدمات عالية الجودة لأقصى أداء.",
+        "w6-title":"شراكة طويلة الأمد","w6-desc":"بناء علاقات دائمية على الثقة ورضا العملاء.",
+        "partners-title":"شركاؤنا التكنولوجيون","clients-title":"عملائنا",
+        "contact-title":"لنقم ببناء مستقبل أكثر ذكاءً معاً","contact-sub":"هل لديك مشروع أو استفسار؟ تواصل معنا وسيرد فريق الخبراء فوراً.",
+        "c-phone":"الهاتف","c-email":"البريد الإلكتروني","c-location":"الموقع","contact-loc":"سلطان مظفر، أربيل، إقليم كردستان، العراق 44001",
+        "f-name":"اسمك","f-email":"بريدك الإلكتروني","f-subject":"الموضوع","f-message":"رسالتك","form-btn":"إرسال الرسالة"
       }
     };
 
-    // 🔄 Execution Function to Switch Language Content and HTML Attributes
-    const langSelect = document.getElementById('lang-select');
-    
-    langSelect.addEventListener('change', (e) => {
-      const selectedLang = e.target.value;
-      
-      // 📐 Handle text directions (RTL / LTR)
-      if (selectedLang === 'ku' || selectedLang === 'ar') {
-        document.documentElement.setAttribute('dir', 'rtl');
-        document.documentElement.setAttribute('lang', selectedLang);
-      } else {
-        document.documentElement.setAttribute('dir', 'ltr');
-        document.documentElement.setAttribute('lang', 'en');
-      }
-      
-      // 📝 Replace inner Texts/HTMLs based on data-key references
-      document.querySelectorAll('[data-key]').forEach(element => {
-        const key = element.getAttribute('data-key');
-        if (langData[selectedLang][key]) {
-          // Check if form input elements require placeholder translations
-          if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            element.setAttribute('placeholder', langData[selectedLang][key]);
-          } else {
-            element.innerHTML = langData[selectedLang][key];
-          }
+    // ===== APPLY LANGUAGE =====
+    function applyLang(lang) {
+      const d = langData[lang];
+      if (!d) return;
+
+      // RTL/LTR
+      const isRTL = lang === 'ku' || lang === 'ar';
+      html.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+      html.setAttribute('lang', lang);
+
+      // Sync both selects
+      document.getElementById('lang-select').value = lang;
+      document.getElementById('lang-select-mobile').value = lang;
+
+      // data-key elements
+      document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (!d[key]) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.setAttribute('placeholder', d[key]);
+        } else {
+          el.innerHTML = d[key];
         }
       });
-      
-      // 🏷️ Specifically fix static IDs that don't have tags
-      document.getElementById('hero-title').innerHTML = langData[selectedLang]['hero-title'];
-      document.getElementById('hero-motto').innerText = langData[selectedLang]['hero-motto'];
-      document.getElementById('about-text').innerHTML = langData[selectedLang]['about-text'];
-      document.getElementById('contact-title').innerText = langData[selectedLang]['contact-title'];
-      document.getElementById('contact-location-text').innerText = langData[selectedLang]['contact-loc'];
-      document.getElementById('form-subject-input').setAttribute('placeholder', langData[selectedLang]['f-subject']);
-    });
+
+      // Mobile menu links (data-key already on them)
+      // Fixed IDs
+      document.getElementById('hero-title').innerHTML = d['hero-title'];
+      document.getElementById('hero-motto').innerText = d['hero-motto'];
+      document.getElementById('about-text').innerHTML = d['about-text'];
+      document.getElementById('contact-title').innerText = d['contact-title'];
+      document.getElementById('contact-location-text').innerText = d['contact-loc'];
+      document.getElementById('form-subject-input').setAttribute('placeholder', d['f-subject']);
+    }
+
+    document.getElementById('lang-select').addEventListener('change', e => applyLang(e.target.value));
+    document.getElementById('lang-select-mobile').addEventListener('change', e => applyLang(e.target.value));
   </script>
 </body>
 </html>
